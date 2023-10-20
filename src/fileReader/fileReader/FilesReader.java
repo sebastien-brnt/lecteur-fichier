@@ -23,9 +23,9 @@ public abstract class FilesReader implements ActionFileReader {
         }
     }
 
-    public void closeFile(FileInputStream file) {
+    public void closeFile() {
         try {
-            file.close();
+            this.file.close();
         } catch (Exception e){
             e.getStackTrace();
         }

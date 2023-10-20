@@ -8,7 +8,7 @@ public interface ActionFileReader {
     public void openFile();
 
     // Close the file
-    public void closeFile(FileInputStream file);
+    public void closeFile();
 
     // Get the file
     public FileInputStream getFile();
