@@ -11,5 +11,9 @@ public class Main {
         TextFile file = new TextFile("/Users/sebastien/Documents/Sorbonne/Cours/Java/Devoirs maison/lecteur-fichier/src/fileReader/monficher.txt");
         file.openFile();
         file.normalRead();
+        file.openFile();
+        file.palindromicRead();
+        file.openFile();
+        file.reverseRead();
     }
 }

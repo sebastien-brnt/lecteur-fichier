@@ -17,13 +17,11 @@ public class TextFile extends FilesReader {
 
         try {
             FileInputStream myFile = this.getFile();
-            int data = myFile.read();
+            int data;
 
             int i = 0;
-            while (data != -1) {
+            while ( (data = myFile.read()) != -1) {
                 buffer[i] = (char) data;
-                data = myFile.read();
-
                 i++;
             }
         } catch (Exception e) {
@@ -35,10 +33,52 @@ public class TextFile extends FilesReader {
 
 
     public void reverseRead() {
-        System.out.println("reverseRead");
+        System.out.println("======= Reverse file playback =======");
+        char[] buffer = new char[50];
+
+        try {
+            FileInputStream myFile = this.getFile();
+            int data;
+
+            int i = 0;
+            while ( (data = myFile.read()) != -1) {
+                buffer[i] = (char) data;
+                i++;
+            }
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+
+        System.out.println(buffer);
     }
 
+
     public void palindromicRead() {
-        System.out.println("palindromicRead");
+        System.out.println("======= Palindromic file playback =======");
+        char[] buffer = new char[50];
+        char[] bufferPalindromic = new char[50];
+
+        try {
+            FileInputStream myFile = this.getFile();
+            int data;
+
+            int i = 0;
+            while ( (data = myFile.read()) != -1) {
+                buffer[i] = (char) data;
+                i++;
+            }
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+
+        int i = 0;
+        for (int j = buffer.length - 1; j >= 0; j--) {
+            if (buffer[j] != '\0') {
+                bufferPalindromic[i] = buffer[j];
+                i++;
+            }
+        }
+
+        System.out.println(bufferPalindromic);
     }
 }
