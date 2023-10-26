@@ -3,82 +3,96 @@ package fileReader.fileType;
 
 import fileReader.fileReader.FilesReader;
 
-import java.io.FileInputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 
-public class TextFile extends FilesReader {
+public class TextFile extends FilesReader implements ActionRead {
 
     public TextFile(String path) {
         super(path);
     }
 
     public void normalRead() {
-        System.out.println("======= Normal file playback =======");
-        char[] buffer = new char[50];
+        // Open the file
+        this.openFile();
 
-        try {
-            FileInputStream myFile = this.getFile();
-            int data;
-
-            int i = 0;
-            while ( (data = myFile.read()) != -1) {
-                buffer[i] = (char) data;
-                i++;
+        // Parse the file
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(this.getFile()))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                // Display the line
+                System.out.println(line);
             }
         } catch (Exception e) {
             e.getStackTrace();
         }
 
-        System.out.println(buffer);
+        // Close the file
+        this.closeFile();
     }
 
 
     public void reverseRead() {
-        System.out.println("======= Reverse file playback =======");
-        char[] buffer = new char[50];
+        // Open the file
+        this.openFile();
 
-        try {
-            FileInputStream myFile = this.getFile();
-            int data;
+        // Initialization of buffers
+        ArrayList<String> buffer = new ArrayList<String>();
+        ArrayList<String> reversedBuffer = new ArrayList<String>();
 
-            int i = 0;
-            while ( (data = myFile.read()) != -1) {
-                buffer[i] = (char) data;
-                i++;
+        // Parse the file and add each line to our buffer
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(this.getFile()))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                buffer.add(line);
             }
         } catch (Exception e) {
             e.getStackTrace();
         }
 
-        System.out.println(buffer);
+        // Parse each element of buffer in reverse to add to reversedBuffer
+        for (int i = buffer.size() - 1; i >= 0; i--) {
+            reversedBuffer.add(buffer.get(i));
+        }
+
+        // Display
+        for (String bufferedLine : reversedBuffer) {
+            System.out.println(bufferedLine);
+        }
+
+        // Close the file
+        this.closeFile();
     }
 
 
     public void palindromicRead() {
-        System.out.println("======= Palindromic file playback =======");
-        char[] buffer = new char[50];
-        char[] bufferPalindromic = new char[50];
+        // Open the file
+        this.openFile();
 
-        try {
-            FileInputStream myFile = this.getFile();
-            int data;
+        // Initialization of buffer
+        ArrayList<String> buffer = new ArrayList<String>();
 
-            int i = 0;
-            while ( (data = myFile.read()) != -1) {
-                buffer[i] = (char) data;
-                i++;
+        // Parse the file and add each line to our buffer
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(this.getFile()))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                // Reverse lines
+                String reversedLine = new StringBuilder(line).reverse().toString();
+
+                // Add line to buffer
+                buffer.add(reversedLine);
             }
         } catch (Exception e) {
             e.getStackTrace();
         }
 
-        int i = 0;
-        for (int j = buffer.length - 1; j >= 0; j--) {
-            if (buffer[j] != '\0') {
-                bufferPalindromic[i] = buffer[j];
-                i++;
-            }
+        // Display
+        for (String bufferedLine : buffer) {
+            System.out.println(bufferedLine);
         }
 
-        System.out.println(bufferPalindromic);
+        // Close the file
+        this.closeFile();
     }
 }

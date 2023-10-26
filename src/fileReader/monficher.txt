@@ -1,3 +1,5 @@
-Mon texte
-Ma ligne 2
-Test
+Mon texte de la première ligne
+Ma ligne 2 contient également un texte
+Test pour la ligne 3 de mon fichier
+Le fichier est au format texte
+La 5ème ligne de mon fichier
