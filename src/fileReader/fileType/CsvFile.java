@@ -1,12 +1,12 @@
 package fileReader.fileType;
 
-import fileReader.fileReader.FilesReader;
+import fileReader.fileReader.MyFilesReader;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class CsvFile extends FilesReader implements ActionRead {
+public class CsvFile extends MyFilesReader implements ActionRead {
 
     private String separator = ";";
 
@@ -19,6 +19,14 @@ public class CsvFile extends FilesReader implements ActionRead {
         this.separator = separator;
     }
 
+    public String getSeparator() {
+        return separator;
+    }
+
+    public void setSeparator(String separator) {
+        this.separator =  separator;
+    }
+
     public void normalRead() {
         // Open the file
         this.openFile();
@@ -28,7 +36,7 @@ public class CsvFile extends FilesReader implements ActionRead {
             String line;
             while ((line = br.readLine()) != null) {
                 // Replace the separator to space
-                line = line.replace(this.separator, " ");
+                line = line.replace(this.getSeparator(), " ");
 
                 // Display the line
                 System.out.println(line);
@@ -107,5 +115,107 @@ public class CsvFile extends FilesReader implements ActionRead {
 
         // Close the file
         this.closeFile();
+    }
+
+    public void compareFiles(CsvFile file) {
+        // Open the first file
+        this.openFile();
+
+        // Open the second file
+        file.openFile();
+
+        // Initialization of buffers for both files
+        ArrayList<String> buffer1 = new ArrayList<>();
+        ArrayList<String> buffer2 = new ArrayList<>();
+
+        try (BufferedReader br1 = new BufferedReader(new InputStreamReader(this.getFile()));
+             BufferedReader br2 = new BufferedReader(new InputStreamReader(file.getFile()))) {
+
+            String line1, line2;
+
+            // Read lines from both files
+            while ((line1 = br1.readLine()) != null && (line2 = br2.readLine()) != null) {
+                // Replace the separator with space
+                line1 = line1.replace(this.getSeparator(), " ");
+                line2 = line2.replace(file.getSeparator(), " ");
+
+                // Add lines to buffers
+                buffer1.add(line1);
+                buffer2.add(line2);
+            }
+
+            // Compare the two buffers
+            if (buffer1.equals(buffer2)) {
+                System.out.println("The files are identical.");
+            } else {
+                System.out.println("The files are not identical.");
+            }
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+
+        // Close both files
+        this.closeFile();
+        file.closeFile();
+    }
+
+    public void compareFilesWithHighlight(CsvFile file) {
+        // Open the first file
+        this.openFile();
+
+        // Open the second file
+        file.openFile();
+
+        Boolean equals = true;
+        int differences = 0;
+
+        // Initialization of buffers for both files
+        ArrayList<String> buffer1 = new ArrayList<>();
+        ArrayList<String> buffer2 = new ArrayList<>();
+
+        try (BufferedReader br1 = new BufferedReader(new InputStreamReader(this.getFile()));
+             BufferedReader br2 = new BufferedReader(new InputStreamReader(file.getFile()))) {
+
+            String line1, line2;
+
+            // Read lines from both files
+            while ((line1 = br1.readLine()) != null && (line2 = br2.readLine()) != null) {
+                // Replace the separator with space
+                line1 = line1.replace(this.getSeparator(), " ");
+                line2 = line2.replace(file.getSeparator(), " ");
+
+                // Add lines to buffers
+                buffer1.add(line1);
+                buffer2.add(line2);
+            }
+
+            // Compare the two buffers and display differences
+            for (int i = 0; i < buffer1.size(); i++) {
+                String lineA = buffer1.get(i);
+                String lineB = buffer2.get(i);
+
+                if (!lineA.equals(lineB)) {
+                    equals = false;
+                    differences++;
+                    System.out.println("Difference in line " + (i + 1) + ":");
+                    System.out.println("File 1: " + lineA);
+                    System.out.println("File 2: " + lineB);
+                    System.out.println();
+                }
+            }
+
+            if (equals) {
+                System.out.println("The files are identical.");
+            } else {
+                System.out.println("Files have " + differences + " different lines");
+            }
+
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+
+        // Close both files
+        this.closeFile();
+        file.closeFile();
     }
 }

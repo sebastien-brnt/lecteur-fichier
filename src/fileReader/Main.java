@@ -7,8 +7,17 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        TextFile fileText = new TextFile("/Users/sebastien/Documents/Sorbonne/Cours/Java/Devoirs maison/lecteur-fichier/src/fileReader/monficher.txt");
-        CsvFile fileCsv = new CsvFile("/Users/sebastien/Documents/Sorbonne/Cours/Java/Devoirs maison/lecteur-fichier/src/fileReader/monfichier.csv");
+        String baseDir = System.getProperty("user.dir") + "/src/fileReader/";
+
+        // Recovery of text files
+        TextFile fileText = new TextFile(baseDir + "monFicher.txt");
+        TextFile fileTextCompare = new TextFile(baseDir + "monFicherCompare.txt");
+        TextFile fileTextIdentique = new TextFile(baseDir + "monFicherCompare.txt");
+
+        // Recovery of CSV files
+        CsvFile fileCsv = new CsvFile(baseDir + "monFichier.csv");
+        CsvFile fileCsvCompare = new CsvFile(baseDir + "monFichierCompare.csv");
+        CsvFile fileCsvIdentique = new CsvFile(baseDir + "monFichier.csv");
 
         // Read text file
         System.out.println("\n=========================");
@@ -23,6 +32,13 @@ public class Main {
         System.out.println("\n======= Palindromic text file playback =======");
         fileText.palindromicRead();
 
+        System.out.println("\n======= Compare Files =======");
+        fileText.compareFiles(fileTextCompare);
+
+        System.out.println("\n======= Compare Files With Highlight =======");
+        fileText.compareFilesWithHighlight(fileTextCompare);
+        System.out.println();
+
 
         // Read CSV file
         System.out.println("\n========================");
@@ -36,5 +52,12 @@ public class Main {
 
         System.out.println("\n======= Palindromic text file playback =======");
         fileCsv.palindromicRead();
+
+        System.out.println("\n======= Compare Files =======");
+        fileCsv.compareFiles(fileCsvIdentique);
+
+        System.out.println("\n======= Compare Files With Highlight =======");
+        fileCsv.compareFilesWithHighlight(fileCsvCompare);
+        System.out.println();
     }
 }

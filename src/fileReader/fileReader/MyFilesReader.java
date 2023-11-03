@@ -1,15 +1,14 @@
 package fileReader.fileReader;
 
 import java.io.FileInputStream;
-import java.io.FileReader;
 
-public abstract class FilesReader implements ActionFileReader {
+public abstract class MyFilesReader implements ActionFileReader {
 
     private String path;
 
     private FileInputStream file;
 
-    public FilesReader(String path) {
+    public MyFilesReader(String path) {
         this.path = path;
     }
 
