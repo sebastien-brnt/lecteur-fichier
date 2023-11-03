@@ -1,14 +1,18 @@
 package fileReader.fileType;
 
-import java.io.FileInputStream;
-
 public interface ActionRead {
-    // Normal read playback
-    public void normalRead();
+    /**
+     * Performs a normal read playback of the file.
+     */
+    void normalRead();
 
-    // Reverse file playback
-    public void reverseRead();
+    /**
+     * Performs a reverse file playback.
+     */
+    void reverseRead();
 
-    // Palindromic file playback
-    public void palindromicRead();
+    /**
+     * Performs a palindromic file playback.
+     */
+    void palindromicRead();
 }

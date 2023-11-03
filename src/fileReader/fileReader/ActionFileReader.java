@@ -4,12 +4,20 @@ import java.io.FileInputStream;
 
 public interface ActionFileReader {
 
-    // Open the file
+    /**
+     * Opens the file.
+     */
     public void openFile();
 
-    // Close the file
+    /**
+     * Closes the file.
+     */
     public void closeFile();
 
-    // Get the file
+    /**
+     * Gets the FileInputStream for the file.
+     *
+     * @return The FileInputStream for the file.
+     */
     public FileInputStream getFile();
 }
