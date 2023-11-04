@@ -1,4 +1,4 @@
-package fileReader.fileReader;
+package fileReader.myFileReader;
 
 import java.io.FileInputStream;
 
@@ -20,4 +20,16 @@ public interface ActionFileReader {
      * @return The FileInputStream for the file.
      */
     public FileInputStream getFile();
+
+    /**
+     * Gets the String for file path.
+     *
+     * @return The file path String
+     */
+    public String getPath();
+
+    /**
+     * Sets the file path.
+     */
+    public void setPath(String path);
 }

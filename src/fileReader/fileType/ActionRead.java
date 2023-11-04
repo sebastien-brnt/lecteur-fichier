@@ -10,9 +10,4 @@ public interface ActionRead {
      * Performs a reverse file playback.
      */
     void reverseRead();
-
-    /**
-     * Performs a palindromic file playback.
-     */
-    void palindromicRead();
 }

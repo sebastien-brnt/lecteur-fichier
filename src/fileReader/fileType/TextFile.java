@@ -1,8 +1,7 @@
 package fileReader.fileType;
 
 
-import fileReader.fileReader.MyFilesReader;
-
+import fileReader.myFileReader.MyFilesReader;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;

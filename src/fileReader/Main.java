@@ -7,7 +7,7 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        String baseDir = System.getProperty("user.dir") + "/src/fileReader/";
+        String baseDir = System.getProperty("user.dir") + "/src/fileReader/files/";
 
         // Recovery of text files
         TextFile fileText = new TextFile(baseDir + "monFicher.txt");

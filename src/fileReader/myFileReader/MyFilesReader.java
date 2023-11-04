@@ -1,4 +1,4 @@
-package fileReader.fileReader;
+package fileReader.myFileReader;
 
 import java.io.FileInputStream;
 
@@ -32,6 +32,14 @@ public abstract class MyFilesReader implements ActionFileReader {
 
     public FileInputStream getFile() {
         return this.file;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public abstract void normalRead();
