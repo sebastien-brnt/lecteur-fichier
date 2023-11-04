@@ -145,45 +145,13 @@ public class CsvFile extends MyFilesReader implements ActionRead {
         this.closeFile();
     }
 
-    // Compare file without showing differences
+    // Compare file with showing differences
     public void compareFiles(CsvFile file) {
-        // Open both files
-        this.openFile();
-        file.openFile();
-
-        // Initialization of buffers for both files
-        ArrayList<String> buffer1 = new ArrayList<>();
-        ArrayList<String> buffer2 = new ArrayList<>();
-
-        try (BufferedReader br1 = new BufferedReader(new InputStreamReader(this.getFile()));
-             BufferedReader br2 = new BufferedReader(new InputStreamReader(file.getFile()))) {
-
-            String line1, line2;
-
-            // Read lines from both files
-            while ((line1 = br1.readLine()) != null && (line2 = br2.readLine()) != null) {
-                // Adding lines to the buffer with replaced separators
-                buffer1.add(replaceSeparator(line1));
-                buffer2.add(replaceSeparator(line2));
-            }
-
-            // Compare the two buffers
-            if (buffer1.equals(buffer2)) {
-                System.out.println("The files are identical.");
-            } else {
-                System.out.println("The files are not identical.");
-            }
-        } catch (Exception e) {
-            e.getStackTrace();
-        }
-
-        // Close both files
-        this.closeFile();
-        file.closeFile();
+        compareFiles(file, true);
     }
 
-    // Compare file with showing differences
-    public void compareFilesWithHighlight(CsvFile file) {
+    // Compare file
+    public void compareFiles(CsvFile file, boolean showDiff) {
         // Open both files
         this.openFile();
         file.openFile();
@@ -205,7 +173,7 @@ public class CsvFile extends MyFilesReader implements ActionRead {
             }
 
             // Using the parent method to compare and show differences of lines
-            this.compareLinesDiff(buffer1, buffer2);
+            this.compareLinesDiff(buffer1, buffer2, showDiff);
 
         } catch (Exception e) {
             e.getStackTrace();

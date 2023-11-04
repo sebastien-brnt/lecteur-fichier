@@ -54,7 +54,7 @@ public abstract class MyFilesReader implements ActionFileReader {
         return path;
     }
 
-    public void compareLinesDiff(ArrayList<String> buffer1, ArrayList<String> buffer2) {
+    public void compareLinesDiff(ArrayList<String> buffer1, ArrayList<String> buffer2, boolean showDiff) {
         // Initialization of flag and counter
         boolean equals = true;
         int differences = 0;
@@ -67,10 +67,13 @@ public abstract class MyFilesReader implements ActionFileReader {
             if (!lineA.equals(lineB)) {
                 equals = false;
                 differences++;
-                System.out.println("Difference in line " + (i + 1) + ":");
-                System.out.println("File 1: " + lineA);
-                System.out.println("File 2: " + lineB);
-                System.out.println();
+
+                if (showDiff) {
+                    System.out.println("Difference in line " + (i + 1) + ":");
+                    System.out.println("File 1: " + lineA);
+                    System.out.println("File 2: " + lineB);
+                    System.out.println();
+                }
             }
         }
 
