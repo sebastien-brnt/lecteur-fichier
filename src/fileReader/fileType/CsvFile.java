@@ -188,10 +188,6 @@ public class CsvFile extends MyFilesReader implements ActionRead {
         this.openFile();
         file.openFile();
 
-        // Initialization of flag and counter
-        boolean equals = true;
-        int differences = 0;
-
         // Initialization of buffers for both files
         ArrayList<String> buffer1 = new ArrayList<>();
         ArrayList<String> buffer2 = new ArrayList<>();
@@ -208,26 +204,8 @@ public class CsvFile extends MyFilesReader implements ActionRead {
                 buffer2.add(replaceSeparator(line2));
             }
 
-            // Compare the two buffers and display differences
-            for (int i = 0; i < buffer1.size(); i++) {
-                String lineA = buffer1.get(i);
-                String lineB = buffer2.get(i);
-
-                if (!lineA.equals(lineB)) {
-                    equals = false;
-                    differences++;
-                    System.out.println("Difference in line " + (i + 1) + ":");
-                    System.out.println("File 1: " + lineA);
-                    System.out.println("File 2: " + lineB);
-                    System.out.println();
-                }
-            }
-
-            if (equals) {
-                System.out.println("The files are identical.");
-            } else {
-                System.out.println("Files have " + differences + " different lines");
-            }
+            // Using the parent method to compare and show differences of lines
+            this.compareLinesDiff(buffer1, buffer2);
 
         } catch (Exception e) {
             e.getStackTrace();
