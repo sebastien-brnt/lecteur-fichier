@@ -27,9 +27,4 @@ public interface ActionFileReader {
      * @return The file path String
      */
     public String getPath();
-
-    /**
-     * Sets the file path.
-     */
-    public void setPath(String path);
 }
