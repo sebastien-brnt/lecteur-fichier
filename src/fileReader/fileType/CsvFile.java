@@ -7,11 +7,21 @@ import java.util.ArrayList;
 
 public class CsvFile extends MyFilesReader implements ActionRead {
 
+    // Attributes
     private String separator = ";";
+    private String separatorForDisplay = " | ";
+
 
     // Constructor only with path
     public CsvFile(String path) {
         super(path);
+    }
+
+    // Constructor with path, separator and separator for display
+    public CsvFile(String path, String separator, String separatorForDisplay) {
+        super(path);
+        this.separator = separator;
+        this.separatorForDisplay = separatorForDisplay;
     }
 
     // Constructor with path and separator
@@ -20,14 +30,29 @@ public class CsvFile extends MyFilesReader implements ActionRead {
         this.separator = separator;
     }
 
+
     // Get separator of file
     public String getSeparator() {
         return separator;
     }
 
+    // Get separator for display
+    public String getSeparatorForDisplay() {
+        return separatorForDisplay;
+    }
+
     // Set separator of file
     public void setSeparator(String separator) {
         this.separator =  separator;
+    }
+
+    // Set separator for display
+    public void setSeparatorForDisplay(String separatorForDisplay) {
+        this.separatorForDisplay = separatorForDisplay;
+    }
+
+    public String replaceSeparator(String stringToReplace) {
+        return stringToReplace.replace(this.getSeparator(), this.getSeparatorForDisplay());
     }
 
     @Override
@@ -40,7 +65,7 @@ public class CsvFile extends MyFilesReader implements ActionRead {
             String line;
             while ((line = br.readLine()) != null) {
                 // Replace the separator to space
-                line = line.replace(this.getSeparator(), " | ");
+                line = replaceSeparator(line);
 
                 // Display the line
                 System.out.println(line);
@@ -67,7 +92,7 @@ public class CsvFile extends MyFilesReader implements ActionRead {
             String line;
             while ((line = br.readLine()) != null) {
                 // Replace the separator to space
-                line = line.replace(this.separator, " | ");
+                line = replaceSeparator(line);
 
                 // Add line to buffer
                 buffer.add(line);
@@ -102,7 +127,7 @@ public class CsvFile extends MyFilesReader implements ActionRead {
             String line;
             while ((line = br.readLine()) != null) {
                 // Replace the separator to space
-                line = line.replace(this.separator, " | ");
+                line = replaceSeparator(line);
 
                 // Reverse lines
                 String reversedLine = new StringBuilder(line).reverse().toString();
@@ -141,8 +166,8 @@ public class CsvFile extends MyFilesReader implements ActionRead {
             // Read lines from both files
             while ((line1 = br1.readLine()) != null && (line2 = br2.readLine()) != null) {
                 // Replace the separator with space
-                line1 = line1.replace(this.getSeparator(), " | ");
-                line2 = line2.replace(file.getSeparator(), " | ");
+                line1 = replaceSeparator(line1);
+                line2 = replaceSeparator(line2);
 
                 // Add lines to buffers
                 buffer1.add(line1);
@@ -186,8 +211,8 @@ public class CsvFile extends MyFilesReader implements ActionRead {
             // Read lines from both files
             while ((line1 = br1.readLine()) != null && (line2 = br2.readLine()) != null) {
                 // Replace the separator with space
-                line1 = line1.replace(this.getSeparator(), " | ");
-                line2 = line2.replace(file.getSeparator(), " | ");
+                line1 = replaceSeparator(line1);
+                line2 = replaceSeparator(line2);
 
                 // Add lines to buffers
                 buffer1.add(line1);
