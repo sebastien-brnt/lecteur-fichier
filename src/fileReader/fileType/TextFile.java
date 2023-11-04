@@ -79,7 +79,7 @@ public class TextFile extends MyFilesReader implements ActionRead {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(this.getFile()))) {
             String line;
             while ((line = br.readLine()) != null) {
-                // Reverse lines
+                // Reverse char in the line
                 String reversedLine = new StringBuilder(line).reverse().toString();
 
                 // Add line to buffer

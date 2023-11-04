@@ -91,11 +91,8 @@ public class CsvFile extends MyFilesReader implements ActionRead {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(this.getFile()))) {
             String line;
             while ((line = br.readLine()) != null) {
-                // Replace the separator to space
-                line = replaceSeparator(line);
-
-                // Add line to buffer
-                buffer.add(line);
+                // Add line to buffer with replaced separator
+                buffer.add(replaceSeparator(line));
             }
         } catch (Exception e) {
             e.getStackTrace();
@@ -129,7 +126,7 @@ public class CsvFile extends MyFilesReader implements ActionRead {
                 // Replace the separator to space
                 line = replaceSeparator(line);
 
-                // Reverse lines
+                // Reverse char in the line
                 String reversedLine = new StringBuilder(line).reverse().toString();
 
                 // Add line to buffer
@@ -165,13 +162,9 @@ public class CsvFile extends MyFilesReader implements ActionRead {
 
             // Read lines from both files
             while ((line1 = br1.readLine()) != null && (line2 = br2.readLine()) != null) {
-                // Replace the separator with space
-                line1 = replaceSeparator(line1);
-                line2 = replaceSeparator(line2);
-
-                // Add lines to buffers
-                buffer1.add(line1);
-                buffer2.add(line2);
+                // Adding lines to the buffer with replaced separators
+                buffer1.add(replaceSeparator(line1));
+                buffer2.add(replaceSeparator(line2));
             }
 
             // Compare the two buffers
@@ -210,13 +203,9 @@ public class CsvFile extends MyFilesReader implements ActionRead {
 
             // Read lines from both files
             while ((line1 = br1.readLine()) != null && (line2 = br2.readLine()) != null) {
-                // Replace the separator with space
-                line1 = replaceSeparator(line1);
-                line2 = replaceSeparator(line2);
-
-                // Add lines to buffers
-                buffer1.add(line1);
-                buffer2.add(line2);
+                // Adding lines to the buffer with replaced separators
+                buffer1.add(replaceSeparator(line1));
+                buffer2.add(replaceSeparator(line2));
             }
 
             // Compare the two buffers and display differences
