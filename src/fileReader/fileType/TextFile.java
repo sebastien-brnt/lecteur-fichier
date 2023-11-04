@@ -7,10 +7,12 @@ import java.util.ArrayList;
 
 public class TextFile extends MyFilesReader implements ActionRead {
 
+    // Constructor
     public TextFile(String path) {
         super(path);
     }
 
+    @Override
     public void normalRead() {
         // Open the file
         this.openFile();
@@ -31,6 +33,7 @@ public class TextFile extends MyFilesReader implements ActionRead {
     }
 
 
+    @Override
     public void reverseRead() {
         // Open the file
         this.openFile();
@@ -64,6 +67,7 @@ public class TextFile extends MyFilesReader implements ActionRead {
     }
 
 
+    @Override
     public void palindromicRead() {
         // Open the file
         this.openFile();
@@ -95,10 +99,8 @@ public class TextFile extends MyFilesReader implements ActionRead {
     }
 
     public void compareFiles(TextFile file) {
-        // Open the first file
+        // Open both files
         this.openFile();
-
-        // Open the second file
         file.openFile();
 
         // Initialization of buffers for both files
@@ -133,12 +135,11 @@ public class TextFile extends MyFilesReader implements ActionRead {
     }
 
     public void compareFilesWithHighlight(TextFile file) {
-        // Open the first file
+        // Open both files
         this.openFile();
-
-        // Open the second file
         file.openFile();
 
+        // Initialization of flag and counter
         boolean equals = true;
         int differences = 0;
 

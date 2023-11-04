@@ -9,23 +9,28 @@ public class CsvFile extends MyFilesReader implements ActionRead {
 
     private String separator = ";";
 
+    // Constructor only with path
     public CsvFile(String path) {
         super(path);
     }
 
+    // Constructor with path and separator
     public CsvFile(String path, String separator) {
         super(path);
         this.separator = separator;
     }
 
+    // Get separator of file
     public String getSeparator() {
         return separator;
     }
 
+    // Set separator of file
     public void setSeparator(String separator) {
         this.separator =  separator;
     }
 
+    @Override
     public void normalRead() {
         // Open the file
         this.openFile();
@@ -35,7 +40,7 @@ public class CsvFile extends MyFilesReader implements ActionRead {
             String line;
             while ((line = br.readLine()) != null) {
                 // Replace the separator to space
-                line = line.replace(this.getSeparator(), " ");
+                line = line.replace(this.getSeparator(), " | ");
 
                 // Display the line
                 System.out.println(line);
@@ -48,6 +53,7 @@ public class CsvFile extends MyFilesReader implements ActionRead {
         this.closeFile();
     }
 
+    @Override
     public void reverseRead() {
         // Open the file
         this.openFile();
@@ -61,7 +67,7 @@ public class CsvFile extends MyFilesReader implements ActionRead {
             String line;
             while ((line = br.readLine()) != null) {
                 // Replace the separator to space
-                line = line.replace(this.separator, " ");
+                line = line.replace(this.separator, " | ");
 
                 // Add line to buffer
                 buffer.add(line);
@@ -83,6 +89,7 @@ public class CsvFile extends MyFilesReader implements ActionRead {
         this.closeFile();
     }
 
+    @Override
     public void palindromicRead() {
         // Open the file
         this.openFile();
@@ -95,7 +102,7 @@ public class CsvFile extends MyFilesReader implements ActionRead {
             String line;
             while ((line = br.readLine()) != null) {
                 // Replace the separator to space
-                line = line.replace(this.separator, " ");
+                line = line.replace(this.separator, " | ");
 
                 // Reverse lines
                 String reversedLine = new StringBuilder(line).reverse().toString();
@@ -116,11 +123,10 @@ public class CsvFile extends MyFilesReader implements ActionRead {
         this.closeFile();
     }
 
+    // Compare file without showing differences
     public void compareFiles(CsvFile file) {
-        // Open the first file
+        // Open both files
         this.openFile();
-
-        // Open the second file
         file.openFile();
 
         // Initialization of buffers for both files
@@ -135,8 +141,8 @@ public class CsvFile extends MyFilesReader implements ActionRead {
             // Read lines from both files
             while ((line1 = br1.readLine()) != null && (line2 = br2.readLine()) != null) {
                 // Replace the separator with space
-                line1 = line1.replace(this.getSeparator(), " ");
-                line2 = line2.replace(file.getSeparator(), " ");
+                line1 = line1.replace(this.getSeparator(), " | ");
+                line2 = line2.replace(file.getSeparator(), " | ");
 
                 // Add lines to buffers
                 buffer1.add(line1);
@@ -158,13 +164,13 @@ public class CsvFile extends MyFilesReader implements ActionRead {
         file.closeFile();
     }
 
+    // Compare file with showing differences
     public void compareFilesWithHighlight(CsvFile file) {
-        // Open the first file
+        // Open both files
         this.openFile();
-
-        // Open the second file
         file.openFile();
 
+        // Initialization of flag and counter
         boolean equals = true;
         int differences = 0;
 
@@ -180,8 +186,8 @@ public class CsvFile extends MyFilesReader implements ActionRead {
             // Read lines from both files
             while ((line1 = br1.readLine()) != null && (line2 = br2.readLine()) != null) {
                 // Replace the separator with space
-                line1 = line1.replace(this.getSeparator(), " ");
-                line2 = line2.replace(file.getSeparator(), " ");
+                line1 = line1.replace(this.getSeparator(), " | ");
+                line2 = line2.replace(file.getSeparator(), " | ");
 
                 // Add lines to buffers
                 buffer1.add(line1);

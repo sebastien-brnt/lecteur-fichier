@@ -12,12 +12,12 @@ public class Main {
         // Recovery of text files
         TextFile fileText = new TextFile(baseDir + "monFicher.txt");
         TextFile fileTextCompare = new TextFile(baseDir + "monFicherCompare.txt");
-        TextFile fileTextIdentique = new TextFile(baseDir + "monFicherCompare.txt");
+        TextFile fileTextIdentical = new TextFile(baseDir + "monFicherCompare.txt");
 
         // Recovery of CSV files
         CsvFile fileCsv = new CsvFile(baseDir + "monFichier.csv");
         CsvFile fileCsvCompare = new CsvFile(baseDir + "monFichierCompare.csv");
-        CsvFile fileCsvIdentique = new CsvFile(baseDir + "monFichier.csv");
+        CsvFile fileCsvIdentical = new CsvFile(baseDir + "monFichier.csv");
 
         // Read text file
         System.out.println("\n=========================");
@@ -33,7 +33,7 @@ public class Main {
         fileText.palindromicRead();
 
         System.out.println("\n======= Compare Files =======");
-        fileText.compareFiles(fileTextCompare);
+        fileText.compareFiles(fileTextIdentical);
 
         System.out.println("\n======= Compare Files With Highlight =======");
         fileText.compareFilesWithHighlight(fileTextCompare);
@@ -54,7 +54,7 @@ public class Main {
         fileCsv.palindromicRead();
 
         System.out.println("\n======= Compare Files =======");
-        fileCsv.compareFiles(fileCsvIdentique);
+        fileCsv.compareFiles(fileCsvIdentical);
 
         System.out.println("\n======= Compare Files With Highlight =======");
         fileCsv.compareFilesWithHighlight(fileCsvCompare);
