@@ -34,10 +34,10 @@ public class Main {
         fileText.palindromicRead();
 
         System.out.println("\n======= Compare Files =======");
-        fileText.compareFiles(fileTextCompare, false);
+        fileText.compareFiles(fileTextCompare, false); // Different file
 
         System.out.println("\n======= Compare Files With Highlight =======");
-        fileText.compareFiles(fileTextCompare);
+        fileText.compareFiles(fileTextCompare); // Different file
         System.out.println();
 
 
@@ -55,10 +55,10 @@ public class Main {
         fileCsv.palindromicRead();
 
         System.out.println("\n======= Compare Files =======");
-        fileCsv.compareFiles(fileCsvIdentical, false);
+        fileCsv.compareFiles(fileCsvIdentical, false); // Identical file
 
         System.out.println("\n======= Compare Files With Highlight =======");
-        fileCsv.compareFiles(fileCsvCompare);
+        fileCsv.compareFiles(fileCsvCompare); // Different file
         System.out.println();
     }
 }
