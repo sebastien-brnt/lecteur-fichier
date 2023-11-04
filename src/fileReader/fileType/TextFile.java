@@ -5,7 +5,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class TextFile extends MyFilesReader implements ActionRead {
+public class TextFile extends MyFilesReader {
 
     // Constructor
     public TextFile(String path) {

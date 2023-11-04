@@ -5,7 +5,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class CsvFile extends MyFilesReader implements ActionRead {
+public class CsvFile extends MyFilesReader {
 
     // Attributes
     private String separator = ";";
