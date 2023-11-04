@@ -1,6 +1,5 @@
 package fileReader.fileType;
 
-
 import fileReader.myFileReader.MyFilesReader;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -140,7 +139,7 @@ public class TextFile extends MyFilesReader implements ActionRead {
         // Open the second file
         file.openFile();
 
-        Boolean equals = true;
+        boolean equals = true;
         int differences = 0;
 
         // Initialization of buffers for both files

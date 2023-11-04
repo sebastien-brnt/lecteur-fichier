@@ -165,7 +165,7 @@ public class CsvFile extends MyFilesReader implements ActionRead {
         // Open the second file
         file.openFile();
 
-        Boolean equals = true;
+        boolean equals = true;
         int differences = 0;
 
         // Initialization of buffers for both files
