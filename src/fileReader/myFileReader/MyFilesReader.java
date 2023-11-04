@@ -54,12 +54,14 @@ public abstract class MyFilesReader implements ActionFileReader {
         return path;
     }
 
+    // Compares lines from two buffers with the ability to show differences
+    @Override
     public void compareLinesDiff(ArrayList<String> buffer1, ArrayList<String> buffer2, boolean showDiff) {
         // Initialization of flag and counter
         boolean equals = true;
         int differences = 0;
 
-        // Compare the two buffers and display differences
+        // Compare the two buffers and display the differences if showDiff is true
         for (int i = 0; i < buffer1.size(); i++) {
             String lineA = buffer1.get(i);
             String lineB = buffer2.get(i);
